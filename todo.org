@@ -2,5 +2,3 @@
 If I am trying to install this lib on non-Guix system, this lib must be installed before config initialization.
 
 * TODO Implement backap util
-
-* TODO Make init for browser_vm and data_vm
