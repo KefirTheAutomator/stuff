@@ -33,7 +33,9 @@
 	   t t)))
    ((string-equal system-type "darwin")
     (when (member "Menlo" (font-family-list))
-	  (set-frame-font "Menlo" t t)))
+	  (set-frame-font
+	   (concat "Menlo " (format "%s" stuff-font-size))
+	   t t)))
    ((string-equal system-type "gnu/linux")
     (when (member "DejaVu Math TeX Gyre" (font-family-list))
 	  (set-frame-font
