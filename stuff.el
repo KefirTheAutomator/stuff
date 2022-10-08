@@ -1,64 +1,16 @@
-(require 'tools/check)
-(require 'tools/backup)
+(require 'stuff/config/base)
+(require 'stuff/config/conditional)
+(require 'stuff/config/packages)
+(require 'stuff/tools/check)
 
 (defvar stuff-font-size 14)
 
-(defun stuff-config ()
+(defun stuff-init ()
+  "Entry point"
   (interactive)
-
-  (setq backup-by-copying t)
-  (setq backup-directory-alist '(("." . "~/.emacs-saves/")))
-
-  (setq delete-old-versions t)
-  (setq kept-new-versions 6)
-  (setq kept-old-versions 2)
-  (setq indent-tabs-mode t)
-  (setq-default tab-width 4)
-  (setq dired-listing-switches "-alFh")
-
-  (menu-bar-mode -1)
-  (when (display-graphic-p)
-    (scroll-bar-mode -1)
-    (tool-bar-mode -1))
-
-  (stuff-set-font)
-  (stuff-check-if-melpa-needed))
-
-(defun stuff-set-font ()
-  (cond
-   ((string-equal system-type "windows-nt")
-    (when (member "Consolas" (font-family-list))
-	  (set-frame-font
-	   (concat "Consolas " (format "%s" stuff-font-size))
-	   t t)))
-   ((string-equal system-type "darwin")
-    (when (member "Menlo" (font-family-list))
-	  (set-frame-font
-	   (concat "Menlo " (format "%s" stuff-font-size))
-	   t t)))
-   ((string-equal system-type "gnu/linux")
-    (when (member "DejaVu Math TeX Gyre" (font-family-list))
-	  (set-frame-font
-	   (concat "DejaVu Sans Mono " (format "%s" stuff-font-size))
-	   t t)))))
-
-(defun stuff-check-if-melpa-needed ()
-  (cond
-   ((string-equal system-type "windows-nt")
-    (stuff-add-melpa))
-   ((string-equal system-type "darwin")
-    (stuff-add-melpa))
-   ((string-equal system-type "gnu/linux")
-    (stuff-add-melpa))))
-
-(defun stuff-add-melpa ()
-  (require 'package)
-  (add-to-list 'package-archives
-			   '("melpa" . "https://melpa.org/packages/")
-			   t)
-  (add-to-list 'package-archives
-			   '("melpa-stable" . "https://stable.melpa.org/packages/")
-			   t)
-  (package-initialize))
+  (stuff-config-base)
+  (stuff-config-conditional-set-font stuff-font-size)
+  (if (not (stuff-tools-check-guix-p))
+	  (stuff-config-packages-install-packages)))
 
 (provide 'stuff)

@@ -1,5 +1,5 @@
-(defun stuff-tools-guix-p ()
+(defun stuff-tools-check-guix-p ()
   "Checks if guix is presented on a system."
   (file-directory-p "/gnu/store"))
 
-(provide 'tools/check)
+(provide 'stuff/tools/check)
