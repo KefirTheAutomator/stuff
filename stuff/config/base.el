@@ -7,7 +7,7 @@
   (setq delete-old-versions t)
   (setq kept-new-versions 6)
   (setq kept-old-versions 2)
-  (setq indent-tabs-mode t)
+  (setq indent-tabs-mode nil)
   (setq-default tab-width 4)
   (setq dired-listing-switches "-alFh")
 
