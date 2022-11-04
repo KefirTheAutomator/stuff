@@ -16,6 +16,6 @@
     (scroll-bar-mode -1)
     (tool-bar-mode -1))
 
-  (load-theme 'misterioso t))
+  (load-theme 'tsdh-light t))
 
 (provide 'stuff/config/base)

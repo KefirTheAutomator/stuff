@@ -7,7 +7,7 @@ My emacs configuration written as a library (with some additional utils in elisp
 I made this [[https://github.com/KefirTheAutomator/guix-channel/blob/main/kefir/pkgs/emacs.scm#L8][package]] for [[https://en.wikipedia.org/wiki/GNU_Guix][Guix]]. After installing this package (or adding in your shell) eval this:
 #+begin_src elisp :eval query
   (require 'stuff)
-  (stuff-config)
+  (stuff-init)
 #+end_src
 I usually add it to my ~/.emacs file
 
@@ -15,7 +15,7 @@ I usually add it to my ~/.emacs file
 #+begin_src elisp :eval query
   (add-to-list 'load-path "~/path/to/stuff")
   (require 'stuff)
-  (stuff-config)
+  (stuff-init)
 #+end_src
 
 
